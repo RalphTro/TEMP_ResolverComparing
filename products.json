@@ -1,0 +1,13 @@
+[
+  {
+    "name": "Honey Pot One (500 g)",
+    "gtin": "04012345999969",
+    "dlPath": "/01/04012345999969",
+    "links": {
+      "image":      { "linkType": "gs1:relatedImage", "accept": "image/*",             "lang": "de" },
+      "video":      { "linkType": "gs1:relatedVideo", "accept": "text/html",           "lang": "de" },
+      "promotion":  { "linkType": "gs1:promotion",    "accept": "text/html",           "lang": "en" },
+      "masterData": { "linkType": "gs1:masterData",   "accept": "application/ld+json", "lang": "de" }
+    }
+  }
+]

@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>GS1 Resolver Impact Demo</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="page-header">
+  <h1>Was passiert, wenn ein GS1 Resolver nicht konform ist?</h1>
+  <p class="subtitle">
+    Dieselbe App, dasselbe Produkt – zwei unterschiedliche Resolver.
+    Links: standardkonform. Rechts: nicht konform (verletzt u. a. die CORS-Anforderung).
+  </p>
+</header>
+
+<nav class="product-selector">
+  <label for="product">Produkt:</label>
+  <select id="product"></select>
+  <button id="reload" type="button">↻ Neu laden</button>
+</nav>
+
+<main class="comparison">
+  <section class="column">
+    <header class="column-header conformant">
+      <h2>🟢 App mit konformem Resolver</h2>
+      <code class="resolver-domain">resolver-st.gs1.org</code>
+      <p class="status" id="status-a">Lade …</p>
+    </header>
+    <div class="product-view" id="view-a"></div>
+  </section>
+
+  <section class="column">
+    <header class="column-header non-conformant">
+      <h2>🔴 App mit nicht-konformem Resolver</h2>
+      <code class="resolver-domain">id.gs1.de</code>
+      <p class="status" id="status-b">Lade …</p>
+    </header>
+    <div class="product-view" id="view-b"></div>
+  </section>
+</main>
+
+<footer class="page-footer">
+  <details>
+    <summary>Für Techniker: Was wird hier eigentlich getestet?</summary>
+    <div class="tech-notes">
+      <p>
+        Beide Spalten rufen per <code>fetch()</code> das Linkset des jeweiligen Resolvers ab
+        (<code>?linkType=all</code> mit <code>Accept: application/linkset+json</code>).
+      </p>
+      <ul>
+        <li>
+          <strong>Links:</strong> <code>resolver-st.gs1.org</code> antwortet mit den notwendigen
+          <code>Access-Control-Allow-Origin</code>-Headern – der Browser liefert das Linkset an die App aus,
+          die Produktansicht wird vollständig gerendert.
+        </li>
+        <li>
+          <strong>Rechts:</strong> <code>id.gs1.de</code> setzt diese Header nicht – der Browser blockiert
+          die Antwort. Die App erhält keine Daten und muss ein „defektes" Produkt zeigen,
+          obwohl die Information beim Hersteller existiert.
+        </li>
+      </ul>
+      <p>
+        Aus Endnutzersicht entsteht der Eindruck einer fehlerhaften Marke oder eines fehlerhaften Produkts –
+        in Wahrheit ist es die fehlende GS1-Konformität des Resolvers.
+      </p>
+    </div>
+  </details>
+</footer>
+
+<script src="app.js"></script>
+</body>
+</html>
