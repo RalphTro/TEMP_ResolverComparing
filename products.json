@@ -4,10 +4,10 @@
     "gtin": "04012345999969",
     "dlPath": "/01/04012345999969",
     "links": {
-      "image":      { "linkType": "gs1:relatedImage", "accept": "image/*",             "lang": "de" },
-      "video":      { "linkType": "gs1:relatedVideo", "accept": "text/html",           "lang": "de" },
+      "image":      { "linkType": "gs1:relatedImage", "accept": "image/*",             "lang": "en" },
+      "video":      { "linkType": "gs1:relatedVideo", "accept": "text/html",           "lang": "en" },
       "promotion":  { "linkType": "gs1:promotion",    "accept": "text/html",           "lang": "en" },
-      "masterData": { "linkType": "gs1:masterData",   "accept": "application/ld+json", "lang": "de" }
+      "masterData": { "linkType": "gs1:masterData",   "accept": "application/ld+json", "lang": "en" }
     }
   }
 ]
